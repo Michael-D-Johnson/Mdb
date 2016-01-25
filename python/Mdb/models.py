@@ -1,0 +1,60 @@
+from Mdb import db
+from flask.ext.login import UserMixin
+
+class Member(db.Model):
+    id = db.Column(db.Integer, primary_key=True,nullable=False)
+    first_name = db.Column(db.String(16), nullable=False,index=True)
+    last_name = db.Column(db.String(16), nullable=False,index=True)
+    email = db.Column(db.String(60),unique=True,nullable=False)
+    phone_number = db.Column(db.String(64))
+    address = db.Column(db.String(120))
+    city = db.Column(db.String(120))
+    state = db.Column(db.String(120))
+    zip_code = db.Column(db.Integer)
+    first_family_member_name = db.Column(db.String(64))
+    first_family_member_email = db.Column(db.String(64))
+    second_family_member_name = db.Column(db.String(64))
+    second_family_member_email = db.Column(db.String(64))
+    third_family_member_name = db.Column(db.String(64))
+    third_family_member_email = db.Column(db.String(64))
+    fourth_family_member_name = db.Column(db.String(64))
+    fourth_family_member_email = db.Column(db.String(64))
+    fifth_family_member_name = db.Column(db.String(64))
+    fifth_family_member_email = db.Column(db.String(64))
+    paid = db.Column(db.String(64))
+    expires = db.Column(db.String(16))
+    profile = db.relationship('Profile', backref='member', lazy='dynamic')
+
+    
+class Form(db.Model):
+    id = db.Column(db.Integer, primary_key=True,nullable=False)
+    first_name = db.Column(db.String(16),index=True,nullable=False)
+    last_name = db.Column(db.String(16),index=True,nullable=False)
+    email = db.Column(db.String(60),unique=True,nullable=False)
+    phone_number = db.Column(db.String(64))
+    address = db.Column(db.String(120))
+    city = db.Column(db.String(120))
+    state = db.Column(db.String(120))
+    zip_code = db.Column(db.Integer)
+    first_family_member_name = db.Column(db.String(64))
+    first_family_member_email = db.Column(db.String(64))
+    second_family_member_name = db.Column(db.String(64))
+    second_family_member_email = db.Column(db.String(64))
+    third_family_member_name = db.Column(db.String(64))
+    third_family_member_email = db.Column(db.String(64))
+    fourth_family_member_name = db.Column(db.String(64))
+    fourth_family_member_email = db.Column(db.String(64))
+    fifth_family_member_name = db.Column(db.String(64))
+    fifth_family_member_email = db.Column(db.String(64))
+    timestamp = db.Column(db.String(64))
+    paid = db.Column(db.Boolean)
+
+class Profile(UserMixin,db.Model):
+    id = db.Column(db.Integer, primary_key=True,nullable=False)
+    username = db.Column(db.String(16),nullable=False,unique=True)
+    passwd = db.Column(db.String(64),nullable=False)
+    about_me = db.Column(db.String(140),nullable=True)
+    member_email = db.Column(db.String(60),db.ForeignKey('member.email'),unique=True,nullable=False)
+    
+    def __repr__(self):
+        return '<User %r>' % (self.username)

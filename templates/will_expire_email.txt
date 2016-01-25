@@ -1,0 +1,7 @@
+Dear {{ member }},
+
+Your membership expires in two weeks! Be sure to renew your at cuas.org/membership. 
+
+Clear skies!
+
+CUAS

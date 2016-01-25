@@ -1,0 +1,7 @@
+Dear {{ member }},
+
+Your membership has expired. If you would like to renew, please visit us at cuas.org/membership. Hope to see you out there!
+
+Clear skies,
+
+CUAS
